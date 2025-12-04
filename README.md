@@ -43,12 +43,38 @@ python main.py --pop 30 --gen 50
 python main.py --benchmark
 ```
 
+Running (detailed)
+- Activate virtual environment and run the main script (preferred):
+```
+# create + activate venv (if not already)
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# run with virtualenv python (avoids activation issues in scripts)
+.venv/bin/python3 main.py
+```
+- Useful flags and examples:
+```
+# Run with specific population and generations
+.venv/bin/python3 main.py --pop 100 --gen 200
+
+# Quick demo run (short)
+.venv/bin/python3 main.py --demo
+
+# Run benchmark mode (if available)
+.venv/bin/python3 main.py --benchmark
+```
+
+Outputs and where to find them
+- During a run the program prints progress to stdout and saves plot images in the working directory by default. Typical files created:
+  - `cloudlet_convergence.png` — GA convergence plot
+  - `cloudlet_placement_solution.png` — visualization of the chosen placement
+- To inspect results programmatically, open the generated PNGs or modify `src/cloudlet_placement/viz.py` to change outputs or formats.
+
 CLI notes
 - Use `--help` to list available flags and options: `python main.py --help`
 - `--demo` runs a quick configuration useful for testing and development
-
-Outputs
-- The script saves convergence plots and (optionally) placement visualizations as PNG files in the working directory. Typical filenames: `cloudlet_convergence.png`, `cloudlet_placement_solution.png`.
 
 Development
 - The core logic is under `src/cloudlet_placement/`. To run experiments or modify operators, edit `ga.py` and `solution.py`.
